@@ -1,5 +1,5 @@
 from fastapi import Depends, FastAPI
-from .routers import users
+from routers import users
 
 app = FastAPI()
 
