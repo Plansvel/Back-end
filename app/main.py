@@ -1,7 +1,10 @@
 from fastapi import Depends, FastAPI
 from routers import users
+from settings import supabase
 
 app = FastAPI()
+
+connection = supabase.create_supabase_client()
 
 app.include_router(users.router)
 
@@ -9,3 +12,7 @@ app.include_router(users.router)
 async def root():
     return {"message": "Hello Bigger Applications!"}
 
+@app.get("/testdb")
+async def buscarUsuarios():
+    usu = connection.table('usuario').select('*').execute()
+    return usu
