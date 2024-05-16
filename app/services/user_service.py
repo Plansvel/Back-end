@@ -23,6 +23,7 @@ def create_user(user: user_schema.UserCreate):
             "email":user.email,
             "cpf":user.cpf, 
             "telefone": user.telefone,
+            "is_active": user.is_active,
             "senha":hashed_senha
             }).execute()
         
