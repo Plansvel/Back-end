@@ -1,6 +1,7 @@
 from fastapi import HTTPException
 from schemas import user_schema
 from settings import supabase
+from settings import security
 
 connection = supabase.create_supabase_client()
 
@@ -15,12 +16,14 @@ def create_user(user: user_schema.UserCreate):
         if user_exists(value=user_email):
             raise HTTPException(status_code=400, detail="Email already registered")
         
+        hashed_senha = security.get_password_hash(user.senha)
+        
         user_created = connection.table("usuario").insert({
             "nome":user.nome,
             "email":user.email,
             "cpf":user.cpf, 
             "telefone": user.telefone,
-            "senha":user.senha
+            "senha":hashed_senha
             }).execute()
         
         if user_created:
