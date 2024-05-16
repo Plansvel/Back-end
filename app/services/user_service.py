@@ -39,17 +39,17 @@ def create_user(user: user_schema.UserCreate):
 
 def create_role(id_user: int):
     try:
-        
-        connection.table("usuario_funcao").insert({
+        user_role = connection.table("usuario_funcao").insert({
             "id_usuario": id_user,
             "id_funcao": 1,
         }).execute()
         
-        id_role = connection.table("usuario_funcao").select("id_funcao").eq("id_usuario", id_user).execute()
-        
-        funcao = connection.table("funcao").select("nome_funcao").eq("id_funcao", id_role.data[0]["id_funcao"]).execute()
-        
-        return funcao.data[0]["nome_funcao"]
+        if user_role:
+            id_role = connection.table("usuario_funcao").select("id_funcao").eq("id_usuario", id_user).execute()
+            funcao = connection.table("funcao").select("nome_funcao").eq("id_funcao", id_role.data[0]["id_funcao"]).execute()
+            return funcao.data[0]["nome_funcao"]
+        else:
+            raise HTTPException(status_code=412, detail="Role user creation failed")
         
     except HTTPException as http_exception:
         raise http_exception
