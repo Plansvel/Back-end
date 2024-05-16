@@ -11,3 +11,4 @@ class UserCreate(UserBase):
     
 class User(UserBase):
     id_usuario: int
+    funcao: str
