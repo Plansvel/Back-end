@@ -10,6 +10,6 @@ router = APIRouter(prefix="/users",
 async def register_user(user: user_schema.UserCreate):
     try:
         user_created = user_service.create_user(user)
-        return user_created.data[0]
+        return user_created
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
