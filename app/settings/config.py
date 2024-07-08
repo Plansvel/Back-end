@@ -1,2 +1,0 @@
-url = "https://btjhhoczxvzbrndiefsr.supabase.co"
-api = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ0amhob2N6eHZ6YnJuZGllZnNyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTM4MjI0NDMsImV4cCI6MjAyOTM5ODQ0M30.zur5mZVTgMxxQcVHgfwfNcfwCozghIV_VwlVWUwA6Xs"
